@@ -9,7 +9,8 @@
             v-on:remove-task="rem"
 
         />
-
+        <a href="/">Home</a>
+        <a href="/tasks">Tasks</a>
     </div>
 </template>
 

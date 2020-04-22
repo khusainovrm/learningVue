@@ -5,6 +5,7 @@
         @rem="removeItem"
         @addItem="addItem"
     />
+    <router-view/>
   </div>
 </template>
 
