@@ -1,17 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Home
+        v-bind:tasks="tasks"
+        @rem="removeItem"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Home from '@/components/Home'
+
 
 export default {
   name: 'App',
+  data () {
+    return  {
+      tasks : [
+        {id: 1, title: "NodeJs", done: false},
+        {id: 2, title: "VueJS", done: false},
+        {id: 3, title: "Angular", done: false},
+      ]
+    }
+  },
   components: {
-    HelloWorld
+    Home
+  },
+  methods : {
+    removeItem(id) {
+      this.tasks = this.tasks.filter(i => i.id !== id)
+    }
   }
 }
 </script>
