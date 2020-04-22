@@ -3,6 +3,7 @@
     <Home
         v-bind:tasks="tasks"
         @rem="removeItem"
+        @addItem="addItem"
     />
   </div>
 </template>
@@ -15,12 +16,13 @@ export default {
   name: 'App',
   data () {
     return  {
-      tasks : [
-        {id: 1, title: "NodeJs", done: false},
-        {id: 2, title: "VueJS", done: false},
-        {id: 3, title: "Angular", done: false},
-      ]
+      tasks : []
     }
+  },
+  mounted() {
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
+        .then(response => response.json())
+        .then(json => this.tasks=json)
   },
   components: {
     Home
@@ -28,6 +30,9 @@ export default {
   methods : {
     removeItem(id) {
       this.tasks = this.tasks.filter(i => i.id !== id)
+    },
+    addItem(item) {
+      this.tasks.push(item)
     }
   }
 }

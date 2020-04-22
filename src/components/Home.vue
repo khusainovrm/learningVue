@@ -1,26 +1,34 @@
 <template>
     <div>
+
         <h1>Commiting khowledge</h1>
         <hr>
+        <NewItem @addItem="addItem"/>
         <TasksList
             v-bind:tasks="tasks"
             v-on:remove-task="rem"
+
         />
+
     </div>
 </template>
 
 <script>
     import TasksList from "@/components/TasksList";
+    import NewItem from "@/components/NewItem";
 
     export default {
         name: "Home",
         props: ["tasks"],
         components: {
-            TasksList
+            TasksList, NewItem
         },
         methods : {
             rem (id) {
                 this.$emit("rem", id)
+            },
+            addItem(item) {
+                this.$emit("addItem", item)
             }
         }
     }

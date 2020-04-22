@@ -3,7 +3,7 @@
         <span
             v-bind:class="{todo:task.done}">
             <input type="checkbox" v-on:change="task.done=!task.done">
-            {{task.id}}. {{task.title}}
+            {{index+1}}. {{task.title | toUpperCase}}
         </span>
         <button class="rem" v-on:click="$emit('remove-task', task.id)">&times;</button>
     </li>
@@ -15,6 +15,14 @@
         props:{
             task :{
                 type: Object, require: true
+            },
+            index : {
+                type: Number
+            }
+        },
+        filters : {
+            toUpperCase (value) {
+                return value.toUpperCase()
             }
         },
     }
